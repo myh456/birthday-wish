@@ -1,4 +1,4 @@
 <template>
-  <div>1</div>
+  <routerView />
 </template>
 
