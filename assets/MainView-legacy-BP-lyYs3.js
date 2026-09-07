@@ -1,1 +1,0 @@
-System.register(["./index-legacy-DssNEJzz.js"],function(e,n){"use strict";var t,r,u;return{setters:[e=>{t=e._,r=e.c,u=e.o}],execute:function(){e("default",t({name:"main"},[["render",function(e,n,t,i,c,s){return u(),r("div",null,"2")}]]))}}});
