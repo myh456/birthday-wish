@@ -152,8 +152,8 @@ body {
   overflow: hidden;
 
   /* 初始裁剪 */
-  clip-path: circle(120px at 50% 50%);
-  -webkit-clip-path: circle(120px at 50% 50%);
+  clip-path: circle(150px at 50% 50%);
+  -webkit-clip-path: circle(150px at 50% 50%);
   transition: clip-path 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
