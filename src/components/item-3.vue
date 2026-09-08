@@ -86,7 +86,7 @@ onMounted(() => init());
 <style scoped>
 #page {
   position: relative;
-  background-image: url("@/assets/background/moon.png");
+  background-image: url("@/assets/background/moon.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

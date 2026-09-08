@@ -143,7 +143,7 @@ body {
 
 #page {
   position: relative;
-  background-image: url("@/assets/background/house.png");
+  background-image: url("@/assets/background/house.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

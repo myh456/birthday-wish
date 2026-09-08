@@ -72,7 +72,7 @@ onMounted(() => init());
 <style scoped>
 #page {
   position: relative;
-  background-image: url("@/assets/background/theatre.png");
+  background-image: url("@/assets/background/theatre.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
