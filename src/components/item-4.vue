@@ -1,7 +1,16 @@
 <template>
-  <div id="page" ref="pageRef">
+  <div
+    id="page"
+    ref="pageRef"
+    :style="{ backgroundImage: `url(${IMAGE_URLS.moon})` }"
+  >
     <Transition>
-      <img v-if="fly" class="lantern-fly" :src="Lantern" alt="升空的霄灯" />
+      <img
+        v-if="fly"
+        class="lantern-fly"
+        :src="IMAGE_URLS.lantern"
+        alt="升空的霄灯"
+      />
     </Transition>
     <Transition>
       <div v-if="canNext" class="next" @click="toNext"></div>
@@ -22,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import Lantern from "@/assets/item/lantern.png";
+import { IMAGE_URLS } from "@/utils/preload";
 import PoemContainer from "./poem-container.vue";
 import { onMounted, ref, watch } from "vue";
 
@@ -63,7 +72,6 @@ onMounted(() => init());
 <style scoped>
 #page {
   position: relative;
-  background-image: url("@/assets/background/moon.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -1,22 +1,41 @@
 <template>
-  <div id="page" ref="pageRef">
+  <div
+    id="page"
+    ref="pageRef"
+    :style="{ backgroundImage: `url(${IMAGE_URLS.moon})` }"
+  >
     <Transition>
-      <img v-if="ready" class="xiao-gaze" :src="XiaoGaze" alt="回望的魈" />
+      <img
+        v-if="ready"
+        class="xiao-gaze"
+        :src="IMAGE_URLS.xiaoGaze"
+        alt="回望的魈"
+      />
     </Transition>
     <Transition>
-      <img v-if="fin" class="xiao-lay" :src="XiaoLay" alt="仰望的魈" />
+      <img
+        v-if="fin"
+        class="xiao-lay"
+        :src="IMAGE_URLS.xiaoLay"
+        alt="仰望的魈"
+      />
     </Transition>
     <Transition>
       <img
         v-if="ready"
         class="lantern"
-        :src="Lantern"
+        :src="IMAGE_URLS.lantern"
         alt="霄灯"
         @click="flyLantern"
       />
     </Transition>
     <Transition>
-      <img v-if="fly" class="lantern-fly" :src="Lantern" alt="升空的霄灯" />
+      <img
+        v-if="fly"
+        class="lantern-fly"
+        :src="IMAGE_URLS.lantern"
+        alt="升空的霄灯"
+      />
     </Transition>
     <Transition>
       <div v-if="canNext" class="next" @click="toNext"></div>
@@ -37,9 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-import XiaoGaze from "@/assets/character/xiao-gaze.png";
-import XiaoLay from "@/assets/character/xiao-lay.png";
-import Lantern from "@/assets/item/lantern.png";
+import { IMAGE_URLS } from "@/utils/preload";
 import PoemContainer from "./poem-container.vue";
 import { onMounted, ref, watch } from "vue";
 
@@ -86,7 +103,6 @@ onMounted(() => init());
 <style scoped>
 #page {
   position: relative;
-  background-image: url("@/assets/background/moon.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

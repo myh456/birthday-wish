@@ -1,10 +1,19 @@
 <template>
-  <div id="page" ref="pageRef">
+  <div
+    id="page"
+    ref="pageRef"
+    :style="{ backgroundImage: `url(${IMAGE_URLS.theatre})` }"
+  >
     <Transition>
-      <img v-if="singing" class="yunjin" :src="Yunjin" alt="云堇" />
+      <img v-if="singing" class="yunjin" :src="IMAGE_URLS.yunjin" alt="云堇" />
     </Transition>
     <Transition>
-      <img v-if="watching" class="xiao" :src="XiaoSit" alt="坐在围墙上的魈" />
+      <img
+        v-if="watching"
+        class="xiao"
+        :src="IMAGE_URLS.xiaoSitting"
+        alt="坐在围墙上的魈"
+      />
     </Transition>
     <Transition>
       <div v-if="canNext" class="next" @click="toNext"></div>
@@ -25,12 +34,10 @@
 </template>
 
 <script lang="ts" setup>
-import Yunjin from "@/assets/character/yunjin.png";
-import XiaoSit from "@/assets/character/xiao-sitting.png";
+import { IMAGE_URLS } from "@/utils/preload";
 import PoemContainer from "./poem-container.vue";
 import { onMounted, ref, watch } from "vue";
 
-const pageRef = ref();
 const hasShown = ref<boolean>(false); // 是否初次展示
 const singing = ref<boolean>(false);
 const watching = ref<boolean>(false);
@@ -72,7 +79,6 @@ onMounted(() => init());
 <style scoped>
 #page {
   position: relative;
-  background-image: url("@/assets/background/theatre.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

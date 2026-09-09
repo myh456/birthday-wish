@@ -1,10 +1,14 @@
 <template>
-  <div id="page" ref="pageRef">
+  <div
+    id="page"
+    ref="pageRef"
+    :style="{ backgroundImage: `url(${IMAGE_URLS.house})` }"
+  >
     <Transition>
       <img
         v-if="!ordered"
         class="sweet-dream"
-        :src="sweetDream"
+        :src="IMAGE_URLS.sweetDream"
         alt="美梦"
         @click="expandCircle"
       />
@@ -13,7 +17,7 @@
       <img
         v-if="order && !ordered"
         class="xiao-give"
-        :src="xiaoGive"
+        :src="IMAGE_URLS.xiaoGive"
         alt="送出美梦的魈"
       />
     </Transition>
@@ -21,7 +25,7 @@
       <img
         v-if="ordered && !out"
         class="sweet-dream-meal"
-        :src="sweetDream"
+        :src="IMAGE_URLS.sweetDream"
         alt="未享用的美梦"
       />
     </Transition>
@@ -29,7 +33,7 @@
       <img
         v-if="out"
         class="sweet-dream-eaten"
-        :src="sweetDreamEaten"
+        :src="IMAGE_URLS.sweetDreamEaten"
         alt="已享用的美梦"
       />
     </Transition>
@@ -37,7 +41,7 @@
       <img
         v-if="ordered && !out"
         class="xiao-lean"
-        :src="xiaoLean"
+        :src="IMAGE_URLS.xiaoLean"
         alt="倚墙休息的魈"
       />
     </Transition>
@@ -45,7 +49,7 @@
       <img
         v-if="ordered && !out"
         class="xiao-lean"
-        :src="xiaoLean"
+        :src="IMAGE_URLS.xiaoLean"
         alt="倚墙休息的魈"
       />
     </Transition>
@@ -77,10 +81,7 @@
 </template>
 
 <script lang="ts" setup>
-import sweetDream from "@/assets/item/sweet-dream.png";
-import sweetDreamEaten from "@/assets/item/sweet-dream-eaten.png";
-import xiaoGive from "@/assets/character/xiao-give.png";
-import xiaoLean from "@/assets/character/xiao-lean.png";
+import { IMAGE_URLS } from "@/utils/preload";
 import PoemContainer from "./poem-container.vue";
 import { onMounted, ref, watch } from "vue";
 
@@ -143,7 +144,6 @@ body {
 
 #page {
   position: relative;
-  background-image: url("@/assets/background/house.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
