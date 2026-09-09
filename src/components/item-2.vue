@@ -99,7 +99,7 @@ onMounted(() => init());
   position: absolute;
   width: 12vw;
   left: 14%;
-  top: 16%;
+  top: 17%;
   transform: rotate(-8deg);
 }
 

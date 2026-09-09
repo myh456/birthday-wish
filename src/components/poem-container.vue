@@ -64,7 +64,7 @@ const INTER_CHAR_DELAY = 0.2; // 每个字之间的延迟
  * 计算每个字符的 animation-delay
  * @param verseIndex 诗句索引（0-based）
  * @param charIndex  字符在句中的索引（0-based）
- * @returns CSS 延迟值，如 "0.6s"
+ * @returns CSS 延迟值
  */
 function getDelay(verseIndex: number, charIndex: number): string {
   const delay = verseIndex * INTER_VERSE_DELAY + charIndex * INTER_CHAR_DELAY;
