@@ -1,18 +1,18 @@
 <template>
+  <Transition>
+    <img
+      v-if="!ordered"
+      class="sweet-dream"
+      :src="IMAGE_URLS.sweetDream"
+      alt="美梦"
+      @click="expandCircle"
+    />
+  </Transition>
   <div
     id="page"
     ref="pageRef"
     :style="{ backgroundImage: `url(${IMAGE_URLS.house})` }"
   >
-    <Transition>
-      <img
-        v-if="!ordered"
-        class="sweet-dream"
-        :src="IMAGE_URLS.sweetDream"
-        alt="美梦"
-        @click="expandCircle"
-      />
-    </Transition>
     <Transition>
       <img
         v-if="order && !ordered"
