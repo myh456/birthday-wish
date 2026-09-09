@@ -195,7 +195,7 @@ body {
 .xiao-lean {
   position: absolute;
   width: 32vw;
-  right: 3%;
+  right: 1%;
   bottom: 12%;
 }
 

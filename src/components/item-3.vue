@@ -121,7 +121,7 @@ onMounted(() => init());
 .xiao-lay {
   position: absolute;
   width: 18vw;
-  right: 22vw;
+  right: 20vw;
   bottom: 3vh;
 }
 
