@@ -6,7 +6,7 @@
   >
     <Transition>
       <img
-        v-if="ready"
+        v-if="ready && !fly"
         class="xiao-gaze"
         :src="IMAGE_URLS.xiaoGaze"
         alt="回望的魈"
@@ -22,7 +22,7 @@
     </Transition>
     <Transition>
       <img
-        v-if="ready"
+        v-if="ready && !fly"
         class="lantern"
         :src="IMAGE_URLS.lantern"
         alt="霄灯"
