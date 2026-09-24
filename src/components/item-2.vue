@@ -22,7 +22,7 @@
       v-if="watching"
       ref="poemRef"
       class="poem"
-      color="#ffffff"
+      color="#FFFF00"
       :sentences="[
         '红牙声断水云乡',
         '袖底风回百转肠',

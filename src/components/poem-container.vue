@@ -15,14 +15,24 @@
         ]"
         :style="{
           fontSize: size + 'px',
-          color: color,
         }"
       >
         <span
           v-for="(char, charIndex) in verse.split('')"
           :key="`${verseIndex}-${charIndex}`"
           class="char"
-          :style="{ animationDelay: getDelay(verseIndex, charIndex) }"
+          :style="{
+            animationDelay: getDelay(verseIndex, charIndex),
+            backgroundImage: `linear-gradient(
+            to bottom,
+            ${material.light} 0%,
+            ${material.base} 20%,
+            ${material.dark} 45%,
+            ${material.highlight} 55%,
+            ${material.base} 75%,
+            ${material.deepDark} 100%
+          )`,
+          }"
         >
           {{ char === " " ? "\u00A0" : char }}
         </span>
@@ -32,7 +42,17 @@
 </template>
 
 <script setup lang="ts">
-import { type PropType } from "vue";
+import { computed, type PropType } from "vue";
+interface RGB {
+  r: number;
+  g: number;
+  b: number;
+}
+interface HSL {
+  h: number;
+  s: number;
+  l: number;
+}
 
 // 组件属性
 const props = defineProps({
@@ -70,9 +90,124 @@ function getDelay(verseIndex: number, charIndex: number): string {
   const delay = verseIndex * INTER_VERSE_DELAY + charIndex * INTER_CHAR_DELAY;
   return `${delay + 1}s`;
 }
+
+/**
+ * 解析 rgb 字符串
+ */
+function parseRgb(hex: string): RGB {
+  let value = hex.replace(new RegExp("^#"), "").trim();
+
+  // 兼容简写形式 '#abc' -> '#aabbcc'
+  if (value.length === 3) {
+    value = value
+      .split("")
+      .map((c) => c + c)
+      .join("");
+  }
+
+  // 校验格式
+  if (!new RegExp("^[0-9a-fA-F]{6}$").test(value)) {
+    throw new Error(`无效的颜色值: ${hex}`);
+  }
+
+  const num = parseInt(value, 16);
+
+  return {
+    r: (num >> 16) & 0xff,
+    g: (num >> 8) & 0xff,
+    b: num & 0xff,
+  };
+}
+
+/**
+ * RGB -> HSL
+ */
+function rgbToHsl({ r, g, b }: RGB): HSL {
+  r /= 255;
+  g /= 255;
+  b /= 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+
+  let h = 0;
+  let s = 0;
+
+  const l = (max + min) / 2;
+
+  if (max !== min) {
+    const d = max - min;
+
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+    switch (max) {
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+
+      case g:
+        h = (b - r) / d + 2;
+        break;
+
+      case b:
+        h = (r - g) / d + 4;
+        break;
+    }
+
+    h /= 6;
+  }
+
+  return {
+    h: h * 360,
+    s: s * 100,
+    l: l * 100,
+  };
+}
+
+/**
+ * HSL -> CSS hsl()
+ */
+function hsl(h: number, s: number, l: number): string {
+  return `hsl(${h} ${s}% ${l}%)`;
+}
+
+/**
+ * 修改 HSL 的明度
+ */
+function adjustLightness(color: HSL, amount: number): string {
+  const lightness = Math.max(0, Math.min(100, color.l + amount));
+
+  return hsl(color.h, color.s, lightness);
+}
+
+/**
+ * 根据基础颜色生成金属渐变
+ */
+const material = computed(() => {
+  const rgb = parseRgb(props.color);
+  const base = rgbToHsl(rgb);
+
+  return {
+    light: adjustLightness(base, 30), // 顶部高光
+    base: adjustLightness(base, 0), // 基础颜色
+    dark: adjustLightness(base, -25), // 第一段暗部
+    highlight: adjustLightness(base, 40), // 中间强高光
+    deepDark: adjustLightness(base, -35), // 深色
+  };
+});
 </script>
 
 <style scoped>
+* {
+  font-weight: 900;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.35));
+}
+
 .poem-container {
   display: inline-block;
   padding: 20px;

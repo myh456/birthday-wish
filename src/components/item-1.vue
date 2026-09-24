@@ -60,7 +60,7 @@
       v-if="ordered && !out"
       ref="poemRef"
       class="poem"
-      color="#ffffff"
+      color="#ff0000"
       :sentences="[
         '琼脂凝作玉生烟',
         '一勺甘甜一梦牵',
@@ -72,7 +72,7 @@
       v-if="out && isActive"
       ref="poemRef"
       class="title"
-      color="#ffffff"
+      color="#ff0000"
       direction="horizontal"
       :size="100"
       :sentences="['生日快乐']"

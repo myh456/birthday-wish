@@ -44,7 +44,7 @@
       v-if="fly"
       ref="poemRef"
       class="poem"
-      color="#ffffff"
+      color="#00ff00"
       :sentences="[
         '荻花如雪月如钩',
         '共放明灯照九秋',

@@ -19,7 +19,7 @@
       v-if="fly"
       ref="poemRef"
       class="poem"
-      color="#ffffff"
+      color="#87ceeb"
       :sentences="[
         '金鹏振翼越重天',
         '璃月山河几变迁',
