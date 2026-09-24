@@ -46,14 +46,6 @@
       />
     </Transition>
     <Transition>
-      <img
-        v-if="ordered && !out"
-        class="xiao-lean"
-        :src="IMAGE_URLS.xiaoLean"
-        alt="倚墙休息的魈"
-      />
-    </Transition>
-    <Transition>
       <div v-if="canNext && !out" class="next" @click="toNext"></div>
     </Transition>
     <PoemContainer
