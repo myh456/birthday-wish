@@ -190,9 +190,9 @@ const material = computed(() => {
   return {
     light: adjustLightness(base, 30), // 顶部高光
     base: adjustLightness(base, 0), // 基础颜色
-    dark: adjustLightness(base, -25), // 第一段暗部
+    dark: adjustLightness(base, -15), // 第一段暗部
     highlight: adjustLightness(base, 40), // 中间强高光
-    deepDark: adjustLightness(base, -35), // 深色
+    deepDark: adjustLightness(base, -25), // 深色
   };
 });
 </script>
